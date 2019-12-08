@@ -110,14 +110,14 @@ const ExportMapModal = {
     },
 
     drawLocations(context, ip){
-        console.log(window.location.hostname);
+        alert(window.location.hostname);
         if (!window.location.hostname || 
             window.location.hostname === "localhost" || 
             window.location.hostname === "127.0.0.1"){
             // note: drawing images on canvas only works on deplyoment servers
             // and will throw an exception when on localhost   
             // TODO : a development workaround 
-            console.log('Locations cannot be drawn on this host');
+            alert('Locations cannot be drawn on this host');
             return;
         }
         if(!ip.showLocations){
@@ -141,7 +141,7 @@ const ExportMapModal = {
         a.href = canvas.toDataURL();
         document.body.appendChild(a);
         a.click();
-        // document.body.removeChild(a);
+        document.body.removeChild(a);
     },
 
 }
