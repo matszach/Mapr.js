@@ -110,6 +110,12 @@ const ExportMapModal = {
     },
 
     drawLocations(context, ip){
+        if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+            // note: drawing images on canvas only works on deplyoment servers
+            // and will throw an exception when on localhost   
+            // TODO : a development workaround 
+            return;
+        }
         if(!ip.showLocations){
             return;
         }
@@ -122,11 +128,6 @@ const ExportMapModal = {
             var image = AssetManager.symbols[loc.symbolIndex];
             image.crossOrigin = 'anonymous';
             context.drawImage(image, xLoc, yLoc, size, size);
-
-            //temp
-            // context.lineWidth = ip.fieldSize/8;
-            // context.strokeStyle = '#ff0000';
-            // context.strokeRect(xLoc, yLoc, size, size);
         }
     },
 
