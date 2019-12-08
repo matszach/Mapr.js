@@ -110,10 +110,14 @@ const ExportMapModal = {
     },
 
     drawLocations(context, ip){
-        if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+        console.log(window.location.hostname);
+        if (!window.location.hostname || 
+            window.location.hostname === "localhost" || 
+            window.location.hostname === "127.0.0.1"){
             // note: drawing images on canvas only works on deplyoment servers
             // and will throw an exception when on localhost   
             // TODO : a development workaround 
+            console.log('Locations cannot be drawn on this host');
             return;
         }
         if(!ip.showLocations){
