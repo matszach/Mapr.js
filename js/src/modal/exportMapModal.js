@@ -10,11 +10,11 @@ const ExportMapModal = {
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Field [px]:</label>
-                <input class='labeledInput' id='exportedFileFieldSize' type='number' value='64'/>
+                <input class='labeledInput' id='exportedFileFieldSize' type='number' value='32'/>
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Border [px]:</label>
-                <input class='labeledInput' id='exportedFileBorderSize' type='number' value='32'/>
+                <input class='labeledInput' id='exportedFileBorderSize' type='number' value='64'/>
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Show grid:</label>
@@ -42,27 +42,101 @@ const ExportMapModal = {
 
     exportMap(){
 
-        var map = MapEditor.map;
+        var imgParams = this.getImageParams();
 
-        var imgData = {
+        var canvas = document.createElement('canvas');
+        canvas.width = imgParams.canvasWidth;
+        canvas.height = imgParams.canvasHeight;
+        // canvas.allowTaint = true;
+
+        var context = canvas.getContext('2d');
+
+        this.drawFields(context, imgParams);
+        this.drawGrid(context, imgParams);
+        this.drawLocations(context, imgParams);
+
+        
+        this.downloadAsPng(canvas, imgParams.fileName);
+
+    },
+
+    getImageParams(){
+        var imgParams = {
+            mapWidth : MapEditor.map.width,
+            mapHeight : MapEditor.map.height,
             fileName : $('#exportedFileNameInput').val(),
             fieldSize : parseInt($('#exportedFileFieldSize').val()),
             borderSize : parseInt($('#exportedFileBorderSize').val()),
-            canvasWidth : 2 * parseInt($('#exportedFileBorderSize').val()) + map.width * parseInt($('#exportedFileFieldSize').val()),
-            canvasHeight : 2 * parseInt($('#exportedFileBorderSize').val()) + map.height * parseInt($('#exportedFileFieldSize').val()),
+            canvasWidth : 2 * parseInt($('#exportedFileBorderSize').val()) + MapEditor.map.width * parseInt($('#exportedFileFieldSize').val()),
+            canvasHeight : 2 * parseInt($('#exportedFileBorderSize').val()) + MapEditor.map.height * parseInt($('#exportedFileFieldSize').val()),
             showGrid : $('#exportedFileShowGrid').is(':checked'), 
             showLocations : $('#exportedFileShowLocations').is(':checked'), 
             showPaths : $('#exportedFileShowPaths').is(':checked'), 
             showText : $('#exportedFileShowText').is(':checked'), 
+            mapData : MapEditor.map,
         }
+        return imgParams;
+    },
 
 
-        var canvas = document.createElement('canvas');
-        canvas.width = imgData.canvasWidth;
-        canvas.height = imgData.canvasHeight;
+    drawFields(context, ip){
+        context.fillStyle = '#ffffff';
+        context.fillRect(0, 0, ip.canvasWidth, ip.canvasHeight);
+        for(var x = 0; x < ip.mapWidth; x++){
+            for(var y = 0; y < ip.mapHeight; y++){
+                context.fillStyle = ip.mapData.fields[x][y];
+                context.fillRect(ip.borderSize + x * ip.fieldSize, ip.borderSize + y * ip.fieldSize, ip.fieldSize, ip.fieldSize);
+            }
+        }
+    },
 
-        var context = canvas.getContext('2d');
+    drawGrid(context, ip){
+        if(!ip.showGrid){
+            return;
+        }
+        context.beginPath();
+        context.strokeStyle = '#000000';
+        context.lineWidth = ip.fieldSize/64;
+        context.setLineDash([]);
+        for(var x = 0; x < ip.mapWidth; x++){
+            context.moveTo(ip.borderSize + x * ip.fieldSize, ip.borderSize);
+            context.lineTo(ip.borderSize + x * ip.fieldSize, ip.borderSize + ip.mapHeight * ip.fieldSize);
+        }
+        for(var y = 0; y < ip.mapHeight; y++){
+            context.moveTo(ip.borderSize, ip.borderSize + y * ip.fieldSize);
+            context.lineTo(ip.borderSize + ip.mapWidth * ip.fieldSize, ip.borderSize + y * ip.fieldSize);
+        }
+        context.stroke();
+    },
 
+    drawLocations(context, ip){
+        if(!ip.showLocations){
+            return;
+        }
+        for(var i = 0; i < ip.mapData.locations.length; i++){
+            var loc = ip.mapData.locations[i];
+            var xLoc = (loc.positionX - 0.5 * loc.sizeScale) * ip.fieldSize + ip.borderSize;
+            var yLoc = (loc.positionY - 0.5 * loc.sizeScale) * ip.fieldSize + ip.borderSize;
+            var size = ip.fieldSize * loc.sizeScale;
+           
+            var image = AssetManager.symbols[loc.symbolIndex];
+            image.crossOrigin = 'anonymous';
+            context.drawImage(image, xLoc, yLoc, size, size);
+
+            //temp
+            // context.lineWidth = ip.fieldSize/8;
+            // context.strokeStyle = '#ff0000';
+            // context.strokeRect(xLoc, yLoc, size, size);
+        }
+    },
+
+    downloadAsPng(canvas, filename){
+        var a = document.createElement('a');
+        a.download = filename;
+        a.href = canvas.toDataURL();
+        document.body.appendChild(a);
+        a.click();
+        // document.body.removeChild(a);
     },
 
 }
