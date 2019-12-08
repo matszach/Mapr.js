@@ -2,11 +2,11 @@ const SaveMapModal = {
 
     open(){
         var html = `
-        <div id='newMapMainDiv'>
+        <div id='modalMainDiv'>
             <h1 class='modalTitle' >Save map as ...</h1>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Name:</label>
-                <input class='labaledInput' id='savedFileNameInput' type='text' value='my-map'/>
+                <input class='labeledInput' id='savedFileNameInput' type='text' value='my-map'/>
             </div>
             <div class='sumbitButtonDiv'>
                 <input type='submit' class='modalSubmitButton' value='Confirm' onclick='SaveMapModal.saveMap()'/>

@@ -3,7 +3,7 @@ const LoadMapModal = {
 
     open(){
         var html = `
-        <div id='newMapMainDiv'>
+        <div id='modalMainDiv'>
             <h1 class='modalTitle' >Load a map from file ...</h1>
             <div class='fileInputDiv'>
                 <label class='fileInputOverlay'>

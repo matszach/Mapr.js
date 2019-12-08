@@ -2,15 +2,15 @@ const NewMapModal = {
 
     open(){
         var html = `
-        <div id='newMapMainDiv'>
+        <div id='modalMainDiv'>
             <h1 class='modalTitle' >Create a new map of size ...</h1>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Width:</label>
-                <input class='labaledInput' id='newMapWidthInput' type='number' value='200'/>
+                <input class='labeledInput' id='newMapWidthInput' type='number' value='200'/>
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Height:</label>
-                <input class='labaledInput' id='newMapHeightInput' type='number'value='140'/>
+                <input class='labeledInput' id='newMapHeightInput' type='number'value='140'/>
             </div>
             <div class='sumbitButtonDiv'>
                 <input type='submit' class='modalSubmitButton' value='Confirm' onclick='NewMapModal.startNewMap()'/>

@@ -45,6 +45,10 @@
     height: var(--tool-choice-button-height);
     width: var(--tool-choice-width);
     background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center; /* centers the image in the element */
+    background-size: calc(var(--tool-choice-width) - 8px) calc(var(--tool-choice-width) - 8px); /* sizes the image down */
+    filter: invert(70%); /* inverts the color of the backgorund image from black to white-gray */
 }
 
 /* CANVAS */

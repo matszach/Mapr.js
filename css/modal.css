@@ -26,11 +26,17 @@
     margin: 10px;
 }
 
+.pseudoModalTopBar{
+    background-color: inherit;
+    filter: brightness(0.8);
+}
+
 .closeModalWindowButton {
     float: right;
     font-size: 28px;
     margin: -6px 0px; /* aligns the close button with the window's top */
     font-weight: bold;
+    padding-bottom: 4px;
 }
 
 .closeModalWindowButton:hover,
@@ -53,20 +59,20 @@
 .inputDescriptionLabel{
     text-align: left;
     float: left;
-    width: 90px;
+    width: 150px;
     height: 30px;
     line-height: 30px;
 }
-.labaledInput{
+.labeledInput{
     float: right;
-    width: calc(100% - 90px);
+    width: calc(100% - 150px);
     height: 30px;
     -webkit-appearance: none;
     background-color: var(--tool-choice-color);
     text-align: center;
     transition-duration: 150ms;
 }
-.labaledInput:focus{
+.labeledInput:focus{
     filter: brightness(1.15);
 }
 
@@ -94,17 +100,27 @@
     filter: brightness(1.15);
 }
 
-/* .modalRadioButton{
+.labeledCheckbox{
+    width: 30px;
     height: 30px;
-    background-color: var(--tool-panel-color);
-} */
+    cursor: pointer;
+    background-color: var(--tool-choice-color);
+    border: 15px solid var(--tool-choice-color);
+    -webkit-appearance: none;
+    transition-duration: 200ms;
+}
 
-/* .selectedRadioButton{
-    border: 3px solid #000011;
-} */
+.labeledCheckbox:hover{
+    filter: brightness(1.15);
+}
+
+.labeledCheckbox:checked{
+    border-width: 5px;
+    background-color: #060615;
+}
 
 /* individual modal windows */
-#newMapMainDiv{
+#modalMainDiv{
     width: 80%;
     margin: auto;
     text-align: center;
