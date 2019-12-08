@@ -110,28 +110,29 @@ const ExportMapModal = {
     },
 
     drawLocations(context, ip){
-        alert(window.location.hostname);
-        if (!window.location.hostname || 
-            window.location.hostname === "localhost" || 
-            window.location.hostname === "127.0.0.1"){
-            // note: drawing images on canvas only works on deplyoment servers
-            // and will throw an exception when on localhost   
-            // TODO : a development workaround 
-            alert('Locations cannot be drawn on this host');
-            return;
-        }
         if(!ip.showLocations){
             return;
         }
+        // note: drawing images on canvas only works on deplyoment servers
+        // and will throw an exception when on localhost  
+        var isServerHost = !appIsLocalhost();
+
         for(var i = 0; i < ip.mapData.locations.length; i++){
             var loc = ip.mapData.locations[i];
             var xLoc = (loc.positionX - 0.5 * loc.sizeScale) * ip.fieldSize + ip.borderSize;
             var yLoc = (loc.positionY - 0.5 * loc.sizeScale) * ip.fieldSize + ip.borderSize;
             var size = ip.fieldSize * loc.sizeScale;
            
-            var image = AssetManager.symbols[loc.symbolIndex];
-            image.crossOrigin = 'anonymous';
-            context.drawImage(image, xLoc, yLoc, size, size);
+            if(isServerHost){
+                var image = AssetManager.symbols[loc.symbolIndex];
+                image.crossOrigin = 'anonymous';
+                context.drawImage(image, xLoc, yLoc, size, size);
+            } else {
+                context.lineWidth = ip.fieldSize/4;
+                context.strokeStyle = '#000011';
+                context.strokeRect(xLoc, yLoc, size, size);
+            }
+            
         }
     },
 
