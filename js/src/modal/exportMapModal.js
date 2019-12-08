@@ -113,8 +113,8 @@ const ExportMapModal = {
         if(!ip.showLocations){
             return;
         }
-        // note: drawing images on canvas only works on deplyoment servers
-        // and will throw an exception when on localhost  
+        // note: drawing images on to-export-canvas only works on deplyoment servers
+        // and will throw an exception when on localhost when exported  
         var isServerHost = !appIsLocalhost();
 
         for(var i = 0; i < ip.mapData.locations.length; i++){
