@@ -1,0 +1,55 @@
+/* MAJOR DIV ELEMENTS */
+#topBarDiv{
+    width: 100%;
+    height: var(--top-bar-height);
+    background-color: var(--top-bar-color);
+    box-shadow: inset 2px 2px 10px 0px #060615; 
+}
+        
+#workspaceDiv{
+    width: 100%;
+    height: calc(100% - var(--top-bar-height));
+}
+
+#toolsChoiceDiv{
+    width: var(--tool-choice-width);
+    height: 100%;
+    background-color: var(--tool-choice-color);
+    float: left;
+    box-shadow: inset 2px 2px 10px 0px #060615; 
+}
+
+#toolsPanelDiv{
+    width: var(--tool-panel-width);
+    height: 100%;
+    background-color: var(--tool-panel-color);
+    float: left;
+    box-shadow: inset 2px 2px 10px 0px #060615;
+}
+
+#mapDiv{
+    width: calc(100% - var(--tool-panel-width) - var(--tool-choice-width));
+    height: 100%;
+    float: left;
+}
+
+
+/* BUTTONS */
+.topBarButton{
+    height: var(--top-bar-height);
+    padding: 0 10px;
+    background-color: transparent;
+}
+
+.toolsChoiceButton{
+    height: var(--tool-choice-button-height);
+    width: var(--tool-choice-width);
+    background-color: transparent;
+}
+
+/* CANVAS */
+#mapCanvas{
+    background-color: var(--canvas-color);
+    cursor: pointer;
+    box-shadow: inset 0px 0px 25px 10px #000009;
+} 

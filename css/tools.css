@@ -1,0 +1,133 @@
+.toolPanelComponentDiv{
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px 5px var(--shadow-color);
+}
+
+
+/* color buttons */
+.colorButton{
+    width: 32px;
+    height: 32px;
+}
+
+.colorButton:hover{
+    border: 2px solid rgba(255, 255, 255, 0.6)
+}
+
+.colorButton.selectedColorButton{
+    border: 4px solid rgba(255, 255, 255, 0.4)
+}
+
+.colorButton:active{
+    border-width: 6px;
+}
+
+/* slider */
+.toolSlider{
+    float: left;
+    -webkit-appearance: none;
+    appearance: none;
+    width: calc(100% - 60px);
+    height: 100%;   
+    margin: 5px 7px;
+    border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.toolSlider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px; 
+    height: 20px; 
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition-duration: 150ms;
+}
+
+.toolSlider::-webkit-slider-thumb:hover{
+    width: 12px; 
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.toolSliderValue{
+    float: left;
+    display: block;
+    width: 40px;
+    line-height: 30px;
+}
+
+/* brush type buttons */
+/* TODO STYLING WHEN IMAGES ADDED*/
+.brushTypeButton{
+    width: calc(100% / 3);
+    height: 32px;
+    background-color: #000011;
+}
+
+.brushTypeButton:hover{
+    border: 2px solid rgba(255, 255, 255, 0.3)
+}
+
+.brushTypeButton.selectedBrushTypeButton{
+    border: 4px solid rgba(255, 255, 255, 0.1)
+}
+
+.brushTypeButton:active{
+    border-width: 6px;
+}
+
+/* symbol buttons */
+.symbolButton{
+    width: 32px;
+    height: 32px;
+
+    /* the symbol button is a DIV element and these are here to make itr more button-like */
+    background-color: #ccccdd;
+    display: -moz-box;
+    float: left;
+    cursor: pointer;
+
+    /* allows for the image applied with jQuery to be stretched over the entire button */
+    /* the size is slighly  larger than the original button to prevent empty pixel lines appearing on some hover actions */
+    background-repeat: no-repeat;
+    background-size: 32px 32px;  
+}
+
+/* wide inset box shadow works as a color filter over the background image */
+.symbolButton:hover{
+    box-shadow: inset 0 0 0 50px rgba(20, 20, 80, 0.2);
+}
+
+.symbolButton.selectedSymbolButton{
+    box-shadow: inset 0 0 0 50px rgba(20, 20, 80, 0.35);
+}
+
+.symbolButton:active{
+    box-shadow: inset 0 0 0 50px rgba(20, 20, 80, 0.5);
+}
+
+
+/* corner buttons */
+#colorButton_i0_j0, #brushTypeButton_i0_j0{
+    border-radius: 10px 0px 0px 0px;
+}
+
+#colorButton_i0_j4, #brushTypeButton_i0_j2{
+    border-radius: 0px 10px 0px 0px;
+}
+
+#colorButton_i12_j0, #brushTypeButton_i1_j0{
+    border-radius: 0px 0px 0px 10px;
+}
+
+#colorButton_i12_j4, #brushTypeButton_i1_j2{
+    border-radius: 0px 0px 10px 0px;
+}
+
+.fullSizeButton{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+}

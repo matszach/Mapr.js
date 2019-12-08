@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<!-- ==================================== HEAD ==================================== -->
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <title>Mapr.js</title>
+  <!-- LIBS -->
+  <script src="js/lib/jquery.js"></script>
+  <!-- SRC -->
+  <script src="js/src/misc.js"></script>
+  <script src="js/src/assetManager.js"></script>
+  <script src="js/src/tools/tool.js"></script>
+  <script src="js/src/tools/painterTool.js"></script>
+  <script src="js/src/tools/locationTool.js"></script>
+  <script src="js/src/mapUtils.js"></script>
+  <script src="js/src/mapEditor.js"></script>
+  <script src="js/src/modal/pseudoModal.js"></script>
+  <script src="js/src/modal/newMapModal.js"></script>
+  <script src="js/src/modal/saveMapModal.js"></script>
+  <script src="js/src/modal/loadMapModal.js"></script>
+  <!-- STYLES -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/defaults.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/tools.css">
+  <link rel="stylesheet" href="css/modal.css">
+
+</head>
+
+<!-- ==================================== BODY ==================================== -->
+<body>
+    <div id='topBarDiv'>
+        <span id='logoSpan'></span>
+        <input type='submit' id='' class='topBarButton' value='New' onclick="NewMapModal.open()"/>
+        <input type='submit' id='' class='topBarButton' value='Load' onclick="LoadMapModal.open()"/>
+        <input type='submit' id='' class='topBarButton' value='Save' onclick="SaveMapModal.open()"/>
+        <input type='submit' id='' class='topBarButton' value='Export' onclick=""/>
+        <input type='submit' id='' class='topBarButton' value='Fullscreen' onclick="toggleFullscreen()"/>        
+    </div>
+    <div id='workspaceDiv'>
+        <div id='toolsChoiceDiv'>
+            <input type='submit' id='' class='toolsChoiceButton' value='T1' 
+                onclick="MapEditor.loadPainterTool()"/>
+            <input type='submit' id='' class='toolsChoiceButton' value='T2' 
+                onclick="MapEditor.loadLocationTool()"/>
+            <input type='submit' id='' class='toolsChoiceButton' value='T3' 
+                onclick=""/>
+            <input type='submit' id='' class='toolsChoiceButton' value='T4' 
+                onclick=""/>
+        </div>
+        <div id='toolsPanelDiv'></div>
+        <div id='mapDiv'>
+            <canvas id='mapCanvas'></canvas>
+        </div>
+    </div>
+
+    <!-- MAIN / INIT -->
+    <script src="js/src/main.js"></script>
+</body>
+
+</html>

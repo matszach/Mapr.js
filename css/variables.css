@@ -1,0 +1,17 @@
+/* SIZES */
+*{
+    --top-bar-height: 35px;
+    --tool-choice-width: 40px;
+    --tool-panel-width: 200px;
+
+    --tool-choice-button-height: 40px;
+}
+
+/* COLORS */
+*{
+    --top-bar-color: #222233;
+    --tool-choice-color: #171728;
+    --tool-panel-color: #121223;
+    --canvas-color: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}
