@@ -9,6 +9,7 @@
   <!-- LIBS -->
   <script src="js/lib/jquery.js"></script>
   <!-- SRC -->
+  <script src="js/src/settingsManager.js"></script>
   <script src="js/src/misc.js"></script>
   <script src="js/src/assetManager.js"></script>
   <script src="js/src/tools/tool.js"></script>
@@ -21,6 +22,8 @@
   <script src="js/src/modal/saveMapModal.js"></script>
   <script src="js/src/modal/loadMapModal.js"></script>
   <script src="js/src/modal/exportMapModal.js"></script>
+  <script src="js/src/modal/settingsModal.js"></script>
+  <script src="js/src/modal/aboutModal.js"></script>
   <!-- STYLES -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/defaults.css">
@@ -38,7 +41,10 @@
         <input type='submit' id='' class='topBarButton' value='Load' onclick="LoadMapModal.open()"/>
         <input type='submit' id='' class='topBarButton' value='Save' onclick="SaveMapModal.open()"/>
         <input type='submit' id='' class='topBarButton' value='Export' onclick="ExportMapModal.open()"/>
-        <input type='submit' id='' class='topBarButton' value='Fullscreen' onclick="toggleFullscreen()"/>        
+        <input type='submit' id='' class='topBarButton' value='Settings' onclick="SettingsModal.open()"/>
+        <input type='submit' id='' class='topBarButton' value='Fullscreen' onclick="toggleFullscreen()"/>
+        <input type='submit' id='' class='topBarButton' value='About' onclick="AboutModal.open()"/>
+
     </div>
     <div id='workspaceDiv'>
         <div id='toolsChoiceDiv'>

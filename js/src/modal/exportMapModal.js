@@ -10,11 +10,11 @@ const ExportMapModal = {
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Field [px]:</label>
-                <input class='labeledInput' id='exportedFileFieldSize' type='number' value='32'/>
+                <input class='labeledInput' id='exportedFileFieldSize' type='number' value='16'/>
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Border [px]:</label>
-                <input class='labeledInput' id='exportedFileBorderSize' type='number' value='64'/>
+                <input class='labeledInput' id='exportedFileBorderSize' type='number' value='32'/>
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Show grid:</label>

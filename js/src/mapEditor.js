@@ -61,11 +61,6 @@ const MapEditor = {
         setInterval(this.drawOnCanvas, 10);
     },
 
-    colors : {
-        BACKGROUND_COLOR : '#000000',
-        GRID_COLOR : '#222222',
-    },
-
     display : MapUtils.generateDisplayDefaults(),
     mouse : MapUtils.generateMouseDefaults(),
     map : MapUtils.generateNewEmptyMap(200, 140,'#00009f'),
@@ -134,8 +129,8 @@ const MapEditor = {
 
         var canvasWidth = $('#mapCanvas').width();
         var canvasHeight = $('#mapCanvas').height();
-        var fieldSize = disp.BASE_FIELD_SIZE * disp.scale;
-        var gridWidth = disp.BASE_GRID_WIDTH * disp.scale;
+        var fieldSize = 25 * disp.scale;
+        var gridWidth = 25 * SettingsManager.displaySettings.borderWidthRatio * disp.scale;
         var offsetX = disp.offsetX % fieldSize;
         if(offsetX < 0) offsetX += fieldSize; // fixes issued when jumping between positive and nagative MapEditor.display.offset
         var offsetY = disp.offsetY % fieldSize;
@@ -144,7 +139,7 @@ const MapEditor = {
         var startY = Math.ceil(- disp.offsetY / fieldSize);
         var endX = startX + Math.ceil(canvasWidth / fieldSize);
         var endY = startY + Math.ceil(canvasHeight / fieldSize);
-        var shouldDrawGrid = disp.scale >= disp.GRID_SHOW_SCALE_LIMIT;
+        var shouldDrawGrid = disp.scale >= SettingsManager.displaySettings.gridDisplayScaleLimit;
         
         var displayVariables = {
             canvasWidth : canvasWidth,
@@ -164,13 +159,15 @@ const MapEditor = {
     },
 
     clearCanvas(context, dv){
-        context.clearRect(0, 0, dv.canvasWidth, dv.canvasHeight);
+
+        context.fillStyle = SettingsManager.displaySettings.getCanvasBackgroundColor();
+        context.fillRect(0, 0, dv.canvasWidth, dv.canvasHeight);
     },
 
     drawGrid(context, dv){
         if(!dv.shouldDrawGrid){return;}
         context.beginPath();
-        context.strokeStyle = MapEditor.colors.GRID_COLOR;
+        context.strokeStyle = SettingsManager.displaySettings.getCanvasGridColor();
         context.lineWidth = dv.gridWidth;
         context.setLineDash([]);
         for(var x = dv.startX; x <= dv.endX; x++){
@@ -236,21 +233,22 @@ const MapEditor = {
     handleOnScrollZoom(e){
         var event = e.originalEvent;
         var disp = MapEditor.display;
+        var ds = SettingsManager.displaySettings;
 
         var newScale;
         var zoomDir;
 
         if(event.deltaY < 0){
-            if(disp.scale >= disp.MAX_SCALE){
+            if(disp.scale >= ds.MAX_SCALE){
                 return;
             }
-            newScale = disp.scale / disp.SCALE_MOD;
+            newScale = disp.scale / ds.scalingSpeedModifier;
             zoomDir = -1;
         } else {
-            if(disp.scale <= disp.MIN_SCALE){
+            if(disp.scale <= ds.MIN_SCALE){
                 return
             }
-            newScale = disp.scale * disp.SCALE_MOD;
+            newScale = disp.scale * ds.scalingSpeedModifier;
             zoomDir = 1;
         }
 

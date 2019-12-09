@@ -16,8 +16,16 @@
     margin: auto; /* 10% from the top and centered */
     margin-top: 80px;
     width: 70%; /* Could be more or less, depending on screen size */
+    min-width: max-content;
     box-shadow: 7px 7px 10px 0px #060615; 
     padding-bottom: 10px;
+}
+
+#modalMainDiv{
+    width: 80%;
+    min-width: max-content;
+    margin: auto;
+    text-align: center;
 }
 
 .pseudoModalContent{
@@ -59,13 +67,13 @@
 .inputDescriptionLabel{
     text-align: left;
     float: left;
-    width: 150px;
+    width: 170px;
     height: 30px;
     line-height: 30px;
 }
 .labeledInput{
     float: right;
-    width: calc(100% - 150px);
+    width: calc(100% - 170px);
     height: 30px;
     -webkit-appearance: none;
     background-color: var(--tool-choice-color);
@@ -75,6 +83,15 @@
 .labeledInput:focus{
     filter: brightness(1.15);
 }
+
+.labeledRadioButtonSetDiv{
+    float: right;
+    width: calc(100% - 170px);
+    height: 30px;
+    text-align: right;
+}
+
+
 
 .sumbitButtonDiv{
     width: 100%;
@@ -119,12 +136,26 @@
     background-color: #060615;
 }
 
-/* individual modal windows */
-#modalMainDiv{
-    width: 80%;
-    margin: auto;
-    text-align: center;
+.colorRadioButton{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 200px;
+    border: solid 0px #101020;
 }
 
+.colorRadioButton:hover{
+    filter: brightness(1.1);
+}
 
+.colorRadioButton:active{
+    filter: brightness(0.95);
+}
 
+.selectedColorRadioButton{
+    height: 22px;
+    width: 22px;
+    border-width: 4px;
+}

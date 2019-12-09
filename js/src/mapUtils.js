@@ -44,13 +44,13 @@ MapUtils = {
 
     generateDisplayDefaults(){
         var display = {
-            BASE_FIELD_SIZE : 25,
-            BASE_GRID_WIDTH : 0.4,
+            // BASE_FIELD_SIZE : 25,
+            // BASE_GRID_WIDTH : SettingsManager.displaySettings.borderWidthRatio * 25,
             scale : 1,
-            MIN_SCALE : 0.10,
-            MAX_SCALE : 10.0,
-            SCALE_MOD : 0.90,
-            GRID_SHOW_SCALE_LIMIT : 0.5,
+            // MIN_SCALE : SettingsManager.displaySettings.MIN_SCALE,
+            // MAX_SCALE : SettingsManager.displaySettings.MAX_SCALE,
+            // SCALE_MOD : 0.90,
+            // GRID_SHOW_SCALE_LIMIT : SettingsManager.displaySettings.gridDisplayScaleLimit,
             offsetX : 0,
             offsetY : 0,
         }
