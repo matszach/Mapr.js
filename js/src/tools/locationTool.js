@@ -61,13 +61,18 @@ class LocationTool extends Tool{
         if(mouse.isLeftDown){
             canvas.globalAlpha = 0.4;
         } else {
-            canvas.globalAlpha = 0.1;
+            canvas.globalAlpha = 0.15;
         }
         canvas.drawImage(image, xLoc, yLoc, size, size);
         canvas.globalAlpha = 1;
     }
 
     usageRelease(x, y){
+        var mouse = MapEditor.mouse;
+        // prevents placing the location if the tool action is halted by a right click
+        if(mouse.isRightDown){
+            return;
+        }
         var loc = new Location();
         loc.symbolIndex = this.selectedSymbolIndex;
         loc.positionX = x;
