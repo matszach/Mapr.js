@@ -1,0 +1,1 @@
+const BASE_FIELD_SIZE = 25;

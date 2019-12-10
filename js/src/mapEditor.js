@@ -129,8 +129,8 @@ const MapEditor = {
 
         var canvasWidth = $('#mapCanvas').width();
         var canvasHeight = $('#mapCanvas').height();
-        var fieldSize = 25 * disp.scale;
-        var gridWidth = 25 * SettingsManager.displaySettings.borderWidthRatio * disp.scale;
+        var fieldSize = BASE_FIELD_SIZE * disp.scale;
+        var gridWidth = BASE_FIELD_SIZE * SettingsManager.displaySettings.borderWidthRatio * disp.scale;
         var offsetX = disp.offsetX % fieldSize;
         if(offsetX < 0) offsetX += fieldSize; // fixes issued when jumping between positive and nagative MapEditor.display.offset
         var offsetY = disp.offsetY % fieldSize;
@@ -367,8 +367,9 @@ const MapEditor = {
         mouse.mouseX = event.pageX - off.left;
         mouse.mouseY = event.pageY - off.top;
         var disp = MapEditor.display;
-        mouse.mouseFieldX = (mouse.mouseX - disp.offsetX)/(disp.BASE_FIELD_SIZE * disp.scale);
-        mouse.mouseFieldY = (mouse.mouseY - disp.offsetY)/(disp.BASE_FIELD_SIZE * disp.scale);
+        var ds = SettingsManager.displaySettings;
+        mouse.mouseFieldX = (mouse.mouseX - disp.offsetX)/(BASE_FIELD_SIZE * disp.scale);
+        mouse.mouseFieldY = (mouse.mouseY - disp.offsetY)/(BASE_FIELD_SIZE * disp.scale);
     }
 
 };
