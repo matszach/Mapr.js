@@ -50,7 +50,21 @@ class LocationTool extends Tool{
 
 
     drawMouseHighlight(canvas, dv){
-
+        var mouse = MapEditor.mouse;
+        if(mouse.isRightDown){
+            return;
+        }
+        var image = AssetManager.symbols[this.selectedSymbolIndex];
+        var size = dv.fieldSize * this.selectedSymbolSize;
+        var xLoc = mouse.mouseX - size/2;
+        var yLoc = mouse.mouseY - size/2;
+        if(mouse.isLeftDown){
+            canvas.globalAlpha = 0.4;
+        } else {
+            canvas.globalAlpha = 0.1;
+        }
+        canvas.drawImage(image, xLoc, yLoc, size, size);
+        canvas.globalAlpha = 1;
     }
 
     usageRelease(x, y){

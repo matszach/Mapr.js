@@ -16,6 +16,8 @@
   <script src="js/src/tools/tool.js"></script>
   <script src="js/src/tools/painterTool.js"></script>
   <script src="js/src/tools/locationTool.js"></script>
+  <script src="js/src/tools/textTool.js"></script>
+  <script src="js/src/tools/pathTool.js"></script>
   <script src="js/src/mapUtils.js"></script>
   <script src="js/src/mapEditor.js"></script>
   <script src="js/src/modal/pseudoModal.js"></script>
@@ -56,10 +58,10 @@
                 onclick="MapEditor.loadLocationTool()"
                 style='background-image: url(assets/img/gui_symbols/position-marker.png)'/>
             <input type='submit' id='pathChoiceTool' class='toolsChoiceButton' value='' 
-                onclick=""
+                onclick="MapEditor.loadPathTool()"
                 style='background-image: url(assets/img/gui_symbols/stone-path.png)'/>
             <input type='submit' id='textChoiceTool' class='toolsChoiceButton' value='' 
-                onclick=""
+                onclick="MapEditor.loadTextTool()"
                 style='background-image: url(assets/img/gui_symbols/quill.png)'/>
         </div>
         <div id='toolsPanelDiv'></div>

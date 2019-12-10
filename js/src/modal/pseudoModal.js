@@ -2,6 +2,7 @@
  * opens a pseudomodal window
  */
 function openModalWindow(html){
+
     var modalHtml = `
     <div class='pseudoModalOverlay'>
         <div class='pseudoModalWindow'>
@@ -16,7 +17,7 @@ function openModalWindow(html){
 
     // fade in animation
     $('.pseudoModalWindow').css('opacity', 0);
-    $('.pseudoModalWindow').fadeTo(400, 0.95);
+    $('.pseudoModalWindow').fadeTo(300, 0.95);
 }
 
 function closeModalWindow(){

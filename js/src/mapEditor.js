@@ -350,6 +350,14 @@ const MapEditor = {
         this.loadTool(new LocationTool());
     },
 
+    loadPathTool(){
+        this.loadTool(new PathTool());
+    },
+
+    loadTextTool(){
+        this.loadTool(new TextTool());
+    },
+
     handleTooluse(){
         var mouse = MapEditor.mouse;
         var x = mouse.mouseFieldX;
