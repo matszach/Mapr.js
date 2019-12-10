@@ -52,3 +52,7 @@ input[type=number]::-webkit-outer-spin-button {
 input[type='file']{
     display: none;
 }
+
+a:hover{
+    filter: brightness(1.3);
+}

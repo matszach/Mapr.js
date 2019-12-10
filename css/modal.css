@@ -60,6 +60,9 @@
     font-size: 1.3em;
     margin-bottom: 20px;
 }
+.modalTextBox{
+    font-size: 1.1em;
+}
 .labelAndInputDiv, .fileInputDiv{
     width: 100%;
     margin: 10px;
@@ -158,4 +161,7 @@
     height: 22px;
     width: 22px;
     border-width: 4px;
+}
+.linkIconDiv{
+    text-align: right;
 }

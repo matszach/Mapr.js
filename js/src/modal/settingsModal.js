@@ -12,30 +12,6 @@ const SettingsModal = {
                 <label class='inputDescriptionLabel'>Grid color:</label>
                 <div class='labeledRadioButtonSetDiv' id='gridColorRadioButtonSetDiv'></div>
             </div>
-            <div class='labelAndInputDiv'>
-                <label class='inputDescriptionLabel'>Grid size:</label>
-                <label class='sliderValueBox' id='gridSizeValueBox'>
-                ${SettingsManager.displaySettings.borderWidthRatio}
-                </label>
-                <input type='range' class='labeledRangeInput' id='gridSizeSlider' 
-                    min='${SettingsManager.displaySettings.MIN_BORDER_WIDTH_RATIO}'
-                    max='${SettingsManager.displaySettings.MAX_BORDER_WIDTH_RATIO}' 
-                    step='0.001' 
-                    value='${SettingsManager.displaySettings.borderWidthRatio}' 
-                    onchange='SettingsModal.adjustGridWidth()'/>
-            </div>
-            <div class='labelAndInputDiv'>
-                <label class='inputDescriptionLabel'>Grid visibility:</label>
-                <label class='sliderValueBox' id='gridDisplayLimitValueBox'>
-                ${SettingsManager.displaySettings.gridDisplayScaleLimit}
-                </label>
-                <input type='range' class='labeledRangeInput' id='gridDisplayLimitSlider' 
-                    min='${SettingsManager.displaySettings.MIN_SCALE}'
-                    max='${SettingsManager.displaySettings.MAX_SCALE}' 
-                    step='0.001' 
-                    value='${SettingsManager.displaySettings.gridDisplayScaleLimit}' 
-                    onchange='SettingsModal.adjustGridDisplayLimit()'/>
-            </div>
         </div>
         `;
         openModalWindow(html);
@@ -86,19 +62,4 @@ const SettingsModal = {
         $('.gridColorRadioButton').removeClass('selectedColorRadioButton');
         $(`#gridColorRadioButton_${index}`).addClass('selectedColorRadioButton');
     },
-
-    // GRID WIDTH
-    adjustGridWidth(){
-        var newWidthRatio = parseFloat($('#gridSizeSlider').val());
-        SettingsManager.displaySettings.borderWidthRatio = newWidthRatio;
-        $('#gridSizeValueBox').html(newWidthRatio);
-    },
-
-    // GRID DISPLAY
-    adjustGridDisplayLimit(){
-        var newDisplayLimit = parseFloat($('#gridDisplayLimitSlider').val());
-        SettingsManager.displaySettings.gridDisplayScaleLimit = newDisplayLimit;
-        $('#gridDisplayLimitValueBox').html(newDisplayLimit);
-    },
-
 }
