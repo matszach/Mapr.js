@@ -11,7 +11,7 @@ MapUtils = {
         }
 
         var locations = new Array();
-        
+        var textNodes = new Array();
         var paths = new Array();
 
         var map = {
@@ -19,6 +19,7 @@ MapUtils = {
             height: height,
             fields: fields,
             locations: locations,
+            textNodes: textNodes,
             paths: paths,
         }
 

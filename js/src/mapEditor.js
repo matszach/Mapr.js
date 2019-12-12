@@ -115,7 +115,9 @@ const MapEditor = {
         MapEditor.handleTooluse();
         MapEditor.drawFields(context, displayVariables);
         MapEditor.drawGrid(context, displayVariables);
+        MapEditor.drawPaths(context, displayVariables);
         MapEditor.drawLocations(context, displayVariables);
+        MapEditor.drawTextNodes(context, displayVariables);
         if(MapEditor.currentTool){
             MapEditor.currentTool.drawMouseHighlight(context, displayVariables);
         }
@@ -199,11 +201,15 @@ const MapEditor = {
         }
     },
 
+    drawPaths(context, dv){
+
+    },
+
     drawLocations(context, dv){
         var locations = MapEditor.map.locations;
         for(var i = 0; i < locations.length; i++){
             var loc = locations[i];
-            if(MapEditor.isLocationInDisplayRange(loc, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
+            if(MapEditor.isItemInDisplayRange(loc, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
                 var image = AssetManager.symbols[loc.symbolIndex];
                 var xLoc = (loc.positionX - dv.startX - 0.5 * loc.sizeScale) * dv.fieldSize + dv.offsetX;
                 var yLoc = (loc.positionY - dv.startY - 0.5 * loc.sizeScale) * dv.fieldSize + dv.offsetY;
@@ -213,9 +219,24 @@ const MapEditor = {
         }
     },
 
-    isLocationInDisplayRange(location, xMin, yMin, xMax, yMax){
-        if(xMin > location.positionX || xMax < location.positionX ||
-           yMin > location.positionY || yMax < location.positionY){
+    drawTextNodes(context, dv){
+        var textNodes = MapEditor.map.textNodes;
+        context.textAlign = "center";  
+        for(var i = 0; i < textNodes.length; i++){
+            var text = textNodes[i];
+            if(MapEditor.isItemInDisplayRange(text, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
+                context.font = `${Math.round(text.sizeScale * dv.fieldSize)}px ${text.font}`;
+                context.fillStyle = text.hue;
+                var xLoc = (text.positionX - dv.startX) * dv.fieldSize + dv.offsetX;
+                var yLoc = (text.positionY - dv.startY) * dv.fieldSize + dv.offsetY;
+                context.fillText(text.value, xLoc, yLoc);
+            }
+        }
+    },
+
+    isItemInDisplayRange(item, xMin, yMin, xMax, yMax){
+        if(xMin > item.positionX || xMax < item.positionX ||
+           yMin > item.positionY || yMax < item.positionY){
             return false;
         }
         return true;

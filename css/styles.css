@@ -25,6 +25,13 @@
     background-color: var(--tool-panel-color);
     float: left;
     box-shadow: inset 2px 2px 10px 0px #060615;
+    overflow-y: scroll;
+}
+
+/* hidden but useable scrollbar in the Y direction */
+#toolsPanelDiv::-webkit-scrollbar {
+    width: 0px;  
+    background: transparent;  
 }
 
 #mapDiv{
