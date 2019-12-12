@@ -19,7 +19,7 @@ class TextTool extends Tool{
     </div>
     `;
 
-    selectedFontFamily = 'Arial';
+    selectedFontFamily = 'Arial'
     selectedFontSizeScale = 1;
     selectedTextHue = '#000000';
     selectedTextValue = '';
@@ -33,7 +33,20 @@ class TextTool extends Tool{
     }
 
     drawMouseHighlight(canvas, dv){
-
+        var mouse = MapEditor.mouse;
+        if(mouse.isRightDown){
+            return;
+        }
+        canvas.textAlign = "center";  
+        canvas.font = `${Math.round(this.selectedFontSizeScale * dv.fieldSize)}px ${this.selectedFontFamily}`;
+        canvas.fillStyle = this.selectedTextHue;
+        if(mouse.isLeftDown){
+            canvas.globalAlpha = 0.4;
+        } else {
+            canvas.globalAlpha = 0.15;
+        }
+        canvas.fillText(this.selectedTextValue, mouse.mouseX, mouse.mouseY);
+        canvas.globalAlpha = 1;
     }
 
     usageRelease(x, y){
@@ -45,7 +58,6 @@ class TextTool extends Tool{
        text.font = this.selectedFontFamily;
        text.value = this.selectedTextValue;
        MapEditor.map.textNodes.push(text);
-       console.log(MapEditor.map.textNodes);
     }
 
     setValueFromTextArea(){
