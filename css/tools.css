@@ -184,7 +184,7 @@
     box-shadow: inset 0px 0px 0px 6px rgba(80, 80, 120, 0.9);
 }
 
-.selectedFontColorChoiceButton{
+.fontColorChoiceButton.selectedFontColorChoiceButton{
     box-shadow: inset 0px 0px 0px 4px rgba(80, 80, 120, 0.8);
 }
 
