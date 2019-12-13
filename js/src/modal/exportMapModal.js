@@ -47,7 +47,6 @@ const ExportMapModal = {
         var canvas = document.createElement('canvas');
         canvas.width = imgParams.canvasWidth;
         canvas.height = imgParams.canvasHeight;
-        // canvas.allowTaint = true;
 
         var context = canvas.getContext('2d');
 

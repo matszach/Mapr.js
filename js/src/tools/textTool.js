@@ -19,7 +19,7 @@ class TextTool extends Tool{
     </div>
     `;
 
-    selectedFontFamily = 'Arial'
+    selectedFontFamily = '';
     selectedFontSizeScale = 1;
     selectedTextHue = '#000000';
     selectedTextValue = '';
@@ -39,6 +39,7 @@ class TextTool extends Tool{
 
     postLoad(){
         this.loadFontButtons();
+        this.selectFont(this.availableFonts[0]);
     }
 
     loadFontButtons(){
@@ -79,6 +80,9 @@ class TextTool extends Tool{
     }
 
     usageRelease(x, y){
+       if(!this.selectedTextValue){
+           return;
+       }
        var text = new TextNode()
        text.positionX = x;
        text.positionY = y;
