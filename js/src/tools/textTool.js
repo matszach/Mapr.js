@@ -21,25 +21,44 @@ class TextTool extends Tool{
 
     selectedFontFamily = '';
     selectedFontSizeScale = 1;
-    selectedTextHue = '#000000';
+    selectedTextHue = '';
     selectedTextValue = '';
 
     availableFonts = [
         'Arial',
+        'Blippo',
+        'Bookman',
+        'Courier',
+        'Fixed',
+        'Florence',
+        'Garamond',
+        'Georgia',
+        'Helvetica',
+        'Impact',
+        'Lucida',
+        'Oldtown',
+        'Palatino',
         'Roboto',
         'Times',
-        'Courier',
         'Verdana',
-        'Georgia',
-        'Palatino',
-        'Garamond',
-        'Bookman',
-        'Impact',
+    ];
+
+    availableColors = [
+        '#000000',
+        '#ffffff',
+        '#ff0000',
+        '#ffff00',
+        '#00ff00',
+        '#00ffff',
+        '#0000ff',
+        '#ff00ff',
     ];
 
     postLoad(){
         this.loadFontButtons();
         this.selectFont(this.availableFonts[0]);
+        this.loadColorButtons();
+        this.selectColor(0);
     }
 
     loadFontButtons(){
@@ -60,6 +79,26 @@ class TextTool extends Tool{
         this.selectedFontFamily = font;
         $('.selectedFontChoiceButton').removeClass('selectedFontChoiceButton');
         $(`#fontChoiceButton_${font}`).addClass('selectedFontChoiceButton');
+    }
+
+    loadColorButtons(){
+        var buttonsHtml = '';
+        for(var i = 0; i < this.availableColors.length; i++){
+            var color = this.availableColors[i];
+            var colorButtonHtml = `
+            <input type='submit' class='fontColorChoiceButton' id='fontColorChoiceButton_${i}' 
+                value='' onclick='MapEditor.currentTool.selectColor(${i})'
+                style='background-color: ${color}'/>
+            `;
+            buttonsHtml += colorButtonHtml;
+        }
+        $('#colorButtonsDiv').html(buttonsHtml);
+    }
+
+    selectColor(index){
+        this.selectedTextHue = this.availableColors[index];
+        $('.selectedFontColorChoiceButton').removeClass('selectedFontColorChoiceButton');
+        $(`#fontColorChoiceButton_${index}`).addClass('selectedFontColorChoiceButton');
     }
 
     drawMouseHighlight(canvas, dv){

@@ -13,7 +13,7 @@ class PathPolyLine {
 class PathTool extends Tool {
 
     toolPanelHtml = `
-    <h1>Path Tool</h1>
+    <h1>Path Tool, TBA</h1>
     `;
 
     postLoad(){
