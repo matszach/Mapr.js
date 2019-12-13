@@ -54,8 +54,8 @@ const ExportMapModal = {
         this.drawFields(context, imgParams);
         this.drawGrid(context, imgParams);
         this.drawLocations(context, imgParams);
+        this.drawTextNodes(context, imgParams);
 
-        
         this.downloadAsPng(canvas, imgParams.fileName);
 
     },
@@ -133,6 +133,20 @@ const ExportMapModal = {
                 context.strokeRect(xLoc, yLoc, size, size);
             }
             
+        }
+    },
+
+    drawTextNodes(context, ip){
+        if(!ip.showText){
+            return;
+        }
+        for(var i = 0; i < ip.mapData.textNodes.length; i++){
+            var text = ip.mapData.textNodes[i];
+            var xLoc = (text.positionX) * ip.fieldSize + ip.borderSize;
+            var yLoc = (text.positionY) * ip.fieldSize + ip.borderSize;           
+            context.font = `${Math.round(text.sizeScale * ip.fieldSize)}px ${text.font}`;
+            context.fillStyle = text.hue;
+            context.fillText(text.value, xLoc, yLoc);  
         }
     },
 

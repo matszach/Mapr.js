@@ -14,8 +14,8 @@ class TextTool extends Tool{
     <div class='toolPanelComponentDiv' id='colorButtonsDiv'></div>
     <div class='toolPanelComponentDiv' id='sizeChoiceDiv'></div>
     <div class='toolPanelComponentDiv' id='textValueDiv'>
-        <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
-            spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
+    <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
+        spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
     </div>
     `;
 
@@ -24,12 +24,41 @@ class TextTool extends Tool{
     selectedTextHue = '#000000';
     selectedTextValue = '';
 
+    availableFonts = [
+        'Arial',
+        'Roboto',
+        'Times',
+        'Courier',
+        'Verdana',
+        'Georgia',
+        'Palatino',
+        'Garamond',
+        'Bookman',
+        'Impact',
+    ];
+
     postLoad(){
-   
+        this.loadFontButtons();
     }
 
-    loadSymbolButtons(){
+    loadFontButtons(){
+        var buttonsHtml = '';
+        for(var i = 0; i < this.availableFonts.length; i++){
+            var font = this.availableFonts[i];
+            var fontButtonHtml = `
+            <input type='submit' class='fontChoiceButton' id='fontChoiceButton_${font}' 
+                value='${font}' onclick='MapEditor.currentTool.selectFont(\"${font}\")'
+                style='font-family: ${font}'/>
+            `;
+            buttonsHtml += fontButtonHtml;
+        }
+        $('#fontButtonsDiv').html(buttonsHtml);
+    }
 
+    selectFont(font){
+        this.selectedFontFamily = font;
+        $('.selectedFontChoiceButton').removeClass('selectedFontChoiceButton');
+        $(`#fontChoiceButton_${font}`).addClass('selectedFontChoiceButton');
     }
 
     drawMouseHighlight(canvas, dv){
