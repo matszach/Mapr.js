@@ -2,8 +2,13 @@
     margin: 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px 5px var(--shadow-color);
+    transition-duration: 200ms;
 }
 
+.toolPanelComponentDiv:hover{
+    box-shadow: 3px 3px 5px 5px var(--shadow-color);
+    transform: scale(1.015);
+}
 
 /* color buttons */
 .colorButton{
