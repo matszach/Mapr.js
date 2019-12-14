@@ -51,7 +51,7 @@ class LocationTool extends Tool{
 
     drawMouseHighlight(canvas, dv){
         var mouse = MapEditor.mouse;
-        if(mouse.isRightDown){
+        if(mouse.isRightDown || !mouse.isActive()){
             return;
         }
         var image = AssetManager.symbols[this.selectedSymbolIndex];

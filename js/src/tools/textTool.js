@@ -23,7 +23,8 @@ class TextTool extends Tool{
     </div>
     <div class='toolPanelComponentDiv' id='textValueDiv'>
         <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
-            spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
+            spellcheck='false' 
+            onkeyup='MapEditor.currentTool.setValueFromTextArea()'/>
     </div>
     `;
 
@@ -128,7 +129,7 @@ class TextTool extends Tool{
 
     drawMouseHighlight(canvas, dv){
         var mouse = MapEditor.mouse;
-        if(mouse.isRightDown){
+        if(mouse.isRightDown || !mouse.isActive()){
             return;
         }
         canvas.textAlign = "center";  
