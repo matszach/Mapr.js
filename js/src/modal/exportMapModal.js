@@ -52,6 +52,7 @@ const ExportMapModal = {
 
         this.drawFields(context, imgParams);
         this.drawGrid(context, imgParams);
+        this.drawPaths(context, imgParams);
         this.drawLocations(context, imgParams);
         this.drawTextNodes(context, imgParams);
 
@@ -146,6 +147,35 @@ const ExportMapModal = {
             context.font = `${Math.round(text.sizeScale * ip.fieldSize)}px ${text.font}`;
             context.fillStyle = text.hue;
             context.fillText(text.value, xLoc, yLoc);  
+        }
+    },
+
+    drawPaths(context, ip){
+        console.log('dasadas');
+        if(!ip.showPaths){
+            return;
+        }
+        for(var i = 0; i < ip.mapData.paths.length; i++){
+
+            var line = ip.mapData.paths[i];
+
+            context.beginPath();
+            context.strokeStyle = line.color;
+            context.lineWidth = line.width * ip.fieldSize/BASE_FIELD_SIZE;
+            console.log(context.lineWidth);
+            context.setLineDash(line.dash);
+    
+            var point = line.points[0];
+            var locX = point.positionX * ip.fieldSize + ip.borderSize;
+            var locY = point.positionY * ip.fieldSize + ip.borderSize;
+            context.moveTo(locX, locY);
+            for(var j = 1; j < line.points.length; j++){
+                point = line.points[j];
+                locX = point.positionX * ip.fieldSize + ip.borderSize;
+                locY = point.positionY * ip.fieldSize + ip.borderSize;
+                context.lineTo(locX, locY);
+            }
+            context.stroke();
         }
     },
 

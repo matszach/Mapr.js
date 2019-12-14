@@ -26,8 +26,29 @@ class PathPolyLine {
 class PathTool extends Tool {
 
     toolPanelHtml = `
-    <h1>Path Tool, W.I.P.</h1>
+    <div class='toolPanelComponentDiv' id='colorButtonsDiv'></div>
+    <div class='toolPanelComponentDiv' id='lineWidthDiv'>
+        <input type='range' class='toolSlider' id='lineWidthSlider' min=1 max=100 value=5 step=1
+            onchange='MapEditor.currentTool.applyLineWidthFromRangeSlider()'/>
+        <span class='toolSliderValue' id='lineWidthValue'></span>     
+    </div>
+    <div class='toolPanelComponentDiv' id='undoLastPathDiv'>
+        <input type='submit' class='fullSizeButton' id'undoLastPathButton' value='Undo last'
+            onclick='MapEditor.currentTool.removeLastPath()'/>
+    </div>
     `;
+
+
+    availableColors = [
+        '#000000',
+        '#ffffff',
+        '#ff0000',
+        '#ffff00',
+        '#00ff00',
+        '#00ffff',
+        '#0000ff',
+        '#ff00ff',
+    ];
 
 
     selectedColor = '#000000';
@@ -35,13 +56,43 @@ class PathTool extends Tool {
     selectedDash = [];
 
 
+
     postLoad(){
-   
+        this.loadColorButtons();
+        this.selectColor(0);
+        this.applyLineWidthFromRangeSlider();
     }
 
-    loadSymbolButtons(){
-
+    loadColorButtons(){
+        var buttonsHtml = '';
+        for(var i = 0; i < this.availableColors.length; i++){
+            var color = this.availableColors[i];
+            var colorButtonHtml = `
+            <input type='submit' class='colorChoiceButton' id='colorChoiceButton_${i}' 
+                value='' onclick='MapEditor.currentTool.selectColor(${i})'
+                style='background-color: ${color}'/>
+            `;
+            buttonsHtml += colorButtonHtml;
+        }
+        $('#colorButtonsDiv').html(buttonsHtml);
     }
+
+
+    selectColor(index){
+        this.selectedColor = this.availableColors[index];
+        $('.selectedColorChoiceButton').removeClass('selectedColorChoiceButton');
+        $(`#colorChoiceButton_${index}`).addClass('selectedColorChoiceButton');
+    }
+
+    applyLineWidthFromRangeSlider(){
+        this.selectedWidth = parseInt($('#lineWidthSlider').val());
+        $('#lineWidthValue').html(this.selectedWidth);
+    }
+
+    removeLastPath(){
+        MapEditor.map.paths.pop();
+    }
+
 
     drawMouseHighlight(canvas, dv){
         if(!this.inProgresPolyLine){
@@ -70,7 +121,7 @@ class PathTool extends Tool {
             return;
         }
 
-        canvas.globalAlpha = 0.15;
+        canvas.globalAlpha = 0.25;
         canvas.moveTo(locX, locY);
         canvas.lineTo(mouse.mouseX, mouse.mouseY);
         canvas.stroke();

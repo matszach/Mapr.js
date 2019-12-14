@@ -102,7 +102,7 @@ class TextTool extends Tool{
         for(var i = 0; i < this.availableColors.length; i++){
             var color = this.availableColors[i];
             var colorButtonHtml = `
-            <input type='submit' class='fontColorChoiceButton' id='fontColorChoiceButton_${i}' 
+            <input type='submit' class='colorChoiceButton' id='colorChoiceButton_${i}' 
                 value='' onclick='MapEditor.currentTool.selectColor(${i})'
                 style='background-color: ${color}'/>
             `;
@@ -114,8 +114,8 @@ class TextTool extends Tool{
 
     selectColor(index){
         this.selectedTextHue = this.availableColors[index];
-        $('.selectedFontColorChoiceButton').removeClass('selectedFontColorChoiceButton');
-        $(`#fontColorChoiceButton_${index}`).addClass('selectedFontColorChoiceButton');
+        $('.selectedColorChoiceButton').removeClass('selectedColorChoiceButton');
+        $(`#colorChoiceButton_${index}`).addClass('selectedColorChoiceButton');
     }
 
     applyFontSizeFromRangeSlider(){

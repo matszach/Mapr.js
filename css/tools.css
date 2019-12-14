@@ -109,19 +109,19 @@
 
 
 /* corner buttons */
-#colorButton_i0_j0, #brushTypeButton_i0_j0, #fontColorChoiceButton_0{
+#colorButton_i0_j0, #brushTypeButton_i0_j0, #colorChoiceButton_0{
     border-radius: 10px 0px 0px 0px;
 }
 
-#colorButton_i0_j4, #brushTypeButton_i0_j2, #fontColorChoiceButton_3{
+#colorButton_i0_j4, #brushTypeButton_i0_j2, #colorChoiceButton_3{
     border-radius: 0px 10px 0px 0px;
 }
 
-#colorButton_i12_j0, #brushTypeButton_i1_j0, #fontColorChoiceButton_4{
+#colorButton_i12_j0, #brushTypeButton_i1_j0, #colorChoiceButton_4{
     border-radius: 0px 0px 0px 10px;
 }
 
-#colorButton_i12_j4, #brushTypeButton_i1_j2, #fontColorChoiceButton_7{
+#colorButton_i12_j4, #brushTypeButton_i1_j2, #colorChoiceButton_7{
     border-radius: 0px 0px 10px 0px;
 }
 
@@ -171,20 +171,20 @@
     color: #6666bb;
 }
 
-.fontColorChoiceButton{
+.colorChoiceButton{
     width: 40px;
     height: 30px;
 }
 
-.fontColorChoiceButton:hover{
+.colorChoiceButton:hover{
     box-shadow: inset 0px 0px 0px 2px rgba(80, 80, 120, 0.7);
 }
 
-.fontColorChoiceButton:active{
+.colorChoiceButton:active{
     box-shadow: inset 0px 0px 0px 6px rgba(80, 80, 120, 0.9);
 }
 
-.fontColorChoiceButton.selectedFontColorChoiceButton{
+.colorChoiceButton.selectedColorChoiceButton{
     box-shadow: inset 0px 0px 0px 4px rgba(80, 80, 120, 0.8);
 }
 

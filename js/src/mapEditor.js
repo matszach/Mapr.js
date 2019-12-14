@@ -206,17 +206,17 @@ const MapEditor = {
 
             var line = MapEditor.map.paths[i];
 
-            var isAtLeastOnePointInVisibleRange = false;
-            for(var j = 0; j < line.points.length; j++){
-                point = line.points[j];
-                if(MapEditor.isItemInDisplayRange(point, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
-                    isAtLeastOnePointInVisibleRange = true;
-                    break;
-                }
-            }
-            if(!isAtLeastOnePointInVisibleRange){
-                continue;
-            }
+            // var isAtLeastOnePointInVisibleRange = false;
+            // for(var j = 0; j < line.points.length; j++){
+            //     point = line.points[j];
+            //     if(MapEditor.isItemInDisplayRange(point, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
+            //         isAtLeastOnePointInVisibleRange = true;
+            //         break;
+            //     }
+            // }
+            // if(!isAtLeastOnePointInVisibleRange){
+            //     continue;
+            // }
 
             context.beginPath();
             context.strokeStyle = line.color;
