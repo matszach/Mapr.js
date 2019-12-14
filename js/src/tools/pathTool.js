@@ -141,7 +141,9 @@ class PathTool extends Tool {
     }
 
     finalizePolyLine(){
-        MapEditor.map.paths.push(this.inProgresPolyLine);
+        if(this.inProgresPolyLine.points.length > 1){
+            MapEditor.map.paths.push(this.inProgresPolyLine);
+        }
     }
 
     usageRelease(x, y){
