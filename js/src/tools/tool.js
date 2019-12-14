@@ -37,9 +37,12 @@ class Tool{
      * @param {Number} x - mouse location's x
      * @param {Number} y - mouse location's y
      * @param {Boolean} mouseLeftState - mouse left button state
+     * @param {Boolean} mouseRightState - mouse right button state
      */
-    use(x, y, mouseLeftState){
-        if(mouseLeftState){
+    use(x, y, mouseLeftState, mouseRightState){
+        if(mouseRightState){
+            this.usageCancel(x, y);
+        }else if(mouseLeftState){
             if(!this.isInUse){
                 this.isInUse = true;
                 this.usageStart(x, y);
@@ -62,6 +65,9 @@ class Tool{
         // abstract, optional
     }
     usageRelease(x, y){
+        // abstract, optional
+    }
+    usageCancel(x, y){
         // abstract, optional
     }
 

@@ -202,7 +202,40 @@ const MapEditor = {
     },
 
     drawPaths(context, dv){
+        for(var i = 0; i < MapEditor.map.paths.length; i++){
 
+            var line = MapEditor.map.paths[i];
+
+            var isAtLeastOnePointInVisibleRange = false;
+            for(var j = 0; j < line.points.length; j++){
+                point = line.points[j];
+                if(MapEditor.isItemInDisplayRange(point, dv.startX - 1, dv.startY - 1, dv.endX + 1, dv.endY + 1)){
+                    isAtLeastOnePointInVisibleRange = true;
+                    break;
+                }
+            }
+            if(!isAtLeastOnePointInVisibleRange){
+                continue;
+            }
+
+            context.beginPath();
+            context.strokeStyle = line.color;
+            context.lineWidth = line.width * dv.fieldSize/BASE_FIELD_SIZE;
+            context.setLineDash(line.dash);
+    
+            var point = line.points[0];
+            var locX = (point.positionX - dv.startX) * dv.fieldSize + dv.offsetX;
+            var locY = (point.positionY - dv.startY) * dv.fieldSize + dv.offsetY;
+            context.moveTo(locX, locY);
+            for(var j = 1; j < line.points.length; j++){
+                point = line.points[j];
+                locX = (point.positionX - dv.startX) * dv.fieldSize + dv.offsetX;
+                locY = (point.positionY - dv.startY) * dv.fieldSize + dv.offsetY;
+                context.lineTo(locX, locY);
+            }
+            context.stroke();
+        }
+        
     },
 
     drawLocations(context, dv){
@@ -384,8 +417,9 @@ const MapEditor = {
         var x = mouse.mouseFieldX;
         var y = mouse.mouseFieldY;
         var isLeftDown = mouse.isLeftDown && !mouse.isRightDown;
+        var isRightDown = mouse.isRightDown;
         if(MapEditor.currentTool){
-            MapEditor.currentTool.use(x, y, isLeftDown);
+            MapEditor.currentTool.use(x, y, isLeftDown, isRightDown);
         }
     },
 

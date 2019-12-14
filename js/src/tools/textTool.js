@@ -22,7 +22,7 @@ class TextTool extends Tool{
             onclick='MapEditor.currentTool.removeLastTextNode()'/>
     </div>
     <div class='toolPanelComponentDiv' id='textValueDiv'>
-        <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
+        <textarea class='toolTextarea' id='textValueTextArea' placeholder=' your text ...' 
             spellcheck='false' 
             onkeyup='MapEditor.currentTool.setValueFromTextArea()'/>
     </div>
