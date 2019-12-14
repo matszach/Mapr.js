@@ -11,7 +11,7 @@ class LocationTool extends Tool{
     toolPanelHtml = `
         <div class='toolPanelComponentDiv' id='symbolButtonsDiv'></div>
         <div class='toolPanelComponentDiv' id='brushSizeDiv'>
-            <input type='range' class='toolSlider' id='symbolSizeSlider' min=1 max=10 value=2 step=0.1
+            <input type='range' class='toolSlider' id='symbolSizeSlider' min=0.5 max=10 value=2 step=0.1
                 onchange='MapEditor.currentTool.applySymbolSizeFromRangeSlider()'/>
             <span class='toolSliderValue' id='symbolSizeValue'></span>     
         </div>

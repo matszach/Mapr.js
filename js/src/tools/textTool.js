@@ -10,9 +10,13 @@ class TextNode {
 class TextTool extends Tool{
 
     toolPanelHtml = `
-    <div class='toolPanelComponentDiv' id='fontButtonsDiv'></div>
     <div class='toolPanelComponentDiv' id='colorButtonsDiv'></div>
-    <div class='toolPanelComponentDiv' id='sizeChoiceDiv'></div>
+    <div class='toolPanelComponentDiv' id='fontButtonsDiv'></div>
+    <div class='toolPanelComponentDiv' id='fontSizeChoiceDiv'>
+        <input type='range' class='toolSlider' id='fontSizeSlider' min=0.5 max=10 value=1 step=0.1
+            onchange='MapEditor.currentTool.applyFontSizeFromRangeSlider()'/>
+        <span class='toolSliderValue' id='fontSizeValue'></span>
+    </div>
     <div class='toolPanelComponentDiv' id='textValueDiv'>
     <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
         spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
@@ -23,6 +27,7 @@ class TextTool extends Tool{
     selectedFontSizeScale = 1;
     selectedTextHue = '';
     selectedTextValue = '';
+
 
     availableFonts = [
         'Arial',
@@ -43,6 +48,7 @@ class TextTool extends Tool{
         'Verdana',
     ];
 
+
     availableColors = [
         '#000000',
         '#ffffff',
@@ -54,12 +60,15 @@ class TextTool extends Tool{
         '#ff00ff',
     ];
 
+
     postLoad(){
         this.loadFontButtons();
         this.selectFont(this.availableFonts[0]);
         this.loadColorButtons();
         this.selectColor(0);
+        this.applyFontSizeFromRangeSlider();
     }
+
 
     loadFontButtons(){
         var buttonsHtml = '';
@@ -75,11 +84,13 @@ class TextTool extends Tool{
         $('#fontButtonsDiv').html(buttonsHtml);
     }
 
+
     selectFont(font){
         this.selectedFontFamily = font;
         $('.selectedFontChoiceButton').removeClass('selectedFontChoiceButton');
         $(`#fontChoiceButton_${font}`).addClass('selectedFontChoiceButton');
     }
+
 
     loadColorButtons(){
         var buttonsHtml = '';
@@ -95,10 +106,16 @@ class TextTool extends Tool{
         $('#colorButtonsDiv').html(buttonsHtml);
     }
 
+
     selectColor(index){
         this.selectedTextHue = this.availableColors[index];
         $('.selectedFontColorChoiceButton').removeClass('selectedFontColorChoiceButton');
         $(`#fontColorChoiceButton_${index}`).addClass('selectedFontColorChoiceButton');
+    }
+
+    applyFontSizeFromRangeSlider(){
+        this.selectedFontSizeScale = parseFloat($('#fontSizeSlider').val());
+        $('#fontSizeValue').html(this.selectedFontSizeScale);
     }
 
     drawMouseHighlight(canvas, dv){
@@ -110,13 +127,14 @@ class TextTool extends Tool{
         canvas.font = `${Math.round(this.selectedFontSizeScale * dv.fieldSize)}px ${this.selectedFontFamily}`;
         canvas.fillStyle = this.selectedTextHue;
         if(mouse.isLeftDown){
-            canvas.globalAlpha = 0.4;
+            canvas.globalAlpha = 0.5;
         } else {
-            canvas.globalAlpha = 0.15;
+            canvas.globalAlpha = 0.2;
         }
         canvas.fillText(this.selectedTextValue, mouse.mouseX, mouse.mouseY);
         canvas.globalAlpha = 1;
     }
+
 
     usageRelease(x, y){
        if(!this.selectedTextValue){
@@ -131,6 +149,7 @@ class TextTool extends Tool{
        text.value = this.selectedTextValue;
        MapEditor.map.textNodes.push(text);
     }
+
 
     setValueFromTextArea(){
         this.selectedTextValue = $('#textValueTextArea').val();
