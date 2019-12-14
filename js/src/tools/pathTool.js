@@ -26,7 +26,7 @@ class PathPolyLine {
 class PathTool extends Tool {
 
     toolPanelHtml = `
-    <h1>Path Tool, TBA</h1>
+    <h1>Path Tool, W.I.P.</h1>
     `;
 
 
