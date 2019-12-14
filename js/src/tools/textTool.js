@@ -17,9 +17,13 @@ class TextTool extends Tool{
             onchange='MapEditor.currentTool.applyFontSizeFromRangeSlider()'/>
         <span class='toolSliderValue' id='fontSizeValue'></span>
     </div>
+    <div class='toolPanelComponentDiv' id='undoLastTextDiv'>
+        <input type='submit' class='fullSizeButton' id'undoLastTextButton' value='Undo last'
+            onclick='MapEditor.currentTool.removeLastTextNode()'/>
+    </div>
     <div class='toolPanelComponentDiv' id='textValueDiv'>
-    <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
-        spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
+        <textarea class='toolTextarea' id='textValueTextArea' placeholder='your text' 
+            spellcheck='false' onchange='MapEditor.currentTool.setValueFromTextArea()'/>
     </div>
     `;
 
@@ -116,6 +120,10 @@ class TextTool extends Tool{
     applyFontSizeFromRangeSlider(){
         this.selectedFontSizeScale = parseFloat($('#fontSizeSlider').val());
         $('#fontSizeValue').html(this.selectedFontSizeScale);
+    }
+
+    removeLastTextNode(){
+        MapEditor.map.textNodes.pop();
     }
 
     drawMouseHighlight(canvas, dv){
