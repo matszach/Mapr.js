@@ -48,6 +48,15 @@
     background-color: transparent;
 }
 
+.topBarButton:hover{
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.topBarButton:active{
+    background-color: rgba(0, 0, 0, 0.20);
+}
+
+
 .toolsChoiceButton{
     height: var(--tool-choice-button-height);
     width: var(--tool-choice-width);
@@ -56,6 +65,14 @@
     background-position: center; /* centers the image in the element */
     background-size: calc(var(--tool-choice-width) - 8px) calc(var(--tool-choice-width) - 8px); /* sizes the image down */
     filter: invert(70%); /* inverts the color of the backgorund image from black to white-gray */
+}
+
+.toolsChoiceButton:hover{
+    filter: invert(50%);
+}
+
+.toolsChoiceButton:active{
+    filter: invert(30%);
 }
 
 /* CANVAS */

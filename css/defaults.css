@@ -34,12 +34,6 @@ input[type='submit']{
     cursor: pointer;
     transition-duration: 100ms;
 }
-input[type='submit']:hover{
-    background-color: rgba(0, 0, 0, 0.15);
-}
-input[type='submit']:active{
-    background-color: rgba(255, 255, 255, 0.02);
-}
 
 /* input number */
 input[type=number]::-webkit-inner-spin-button, 
@@ -55,4 +49,21 @@ input[type='file']{
 
 a:hover{
     filter: brightness(1.3);
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+    border: none;
+    cursor: pointer;
+}
+input[type="color"]:hover {
+    filter: brightness(1.15);
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    margin: 7px;
+    margin-right: 17px;
 }

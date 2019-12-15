@@ -10,7 +10,11 @@ const NewMapModal = {
             </div>
             <div class='labelAndInputDiv'>
                 <label class='inputDescriptionLabel'>Height:</label>
-                <input class='labeledInput' id='newMapHeightInput' type='number'value='140'/>
+                <input class='labeledInput' id='newMapHeightInput' type='number' value='140'/>
+            </div>
+            <div class='labelAndInputDiv'>
+                <label class='inputDescriptionLabel'>Default color:</label>
+                <input class='labeledInput' id='defaultColorInput' type='color' value='#00009f'/>
             </div>
             <div class='sumbitButtonDiv'>
                 <input type='submit' class='modalSubmitButton' value='Confirm' onclick='NewMapModal.startNewMap()'/>
@@ -23,7 +27,8 @@ const NewMapModal = {
     startNewMap(){
         var w = parseInt($('#newMapWidthInput').val());
         var h = parseInt($('#newMapHeightInput').val());
-        MapEditor.openNewMap(w, h);
+        var color = $('#defaultColorInput').val();
+        MapEditor.openNewMap(w, h, color);
         closeModalWindow();
     },
 

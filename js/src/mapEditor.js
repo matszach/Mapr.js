@@ -65,8 +65,8 @@ const MapEditor = {
     mouse : MapUtils.generateMouseDefaults(),
     map : MapUtils.generateNewEmptyMap(200, 140,'#00009f'),
 
-    openNewMap(width, height){
-        this.map = MapUtils.generateNewEmptyMap(width, height,'#00009f');
+    openNewMap(width, height, defaultColor){
+        this.map = MapUtils.generateNewEmptyMap(width, height, defaultColor);
     },
 
     /**

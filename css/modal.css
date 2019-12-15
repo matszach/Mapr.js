@@ -107,6 +107,14 @@
     margin: 0 10%;
 }
 
+.modalSubmitButton:hover{
+    filter: brightness(1.15);
+}
+
+.modalSubmitButton:active{
+    filter: brightness(0.85);
+}
+
 .fileInputOverlay{
     background-color: var(--tool-choice-color);
     cursor: pointer;
