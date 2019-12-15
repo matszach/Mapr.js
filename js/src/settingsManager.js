@@ -24,4 +24,27 @@ const SettingsManager = {
 
         scalingSpeedModifier : 0.9,
     },
+
+    colorPalette : {
+        colors : [
+            '#ff0000',
+            '#ff8800',
+            '#ffff00',
+            '#88ff00',
+            '#00ff00',
+            '#00ff88',
+            '#00ffff',
+            '#0088ff',
+            '#0000ff',
+            '#8800ff',
+            '#ff00ff',
+            '#ff0088',
+            '#000000',
+            '#ffffff',
+            '#ffffff',
+            '#ffffff',
+        ],  
+
+        selectedColorIndex : 0,
+    },
 }

@@ -52,25 +52,13 @@ class TextTool extends Tool{
         'Times',
         'Verdana',
     ];
-
-
-    availableColors = [
-        '#000000',
-        '#ffffff',
-        '#ff0000',
-        '#ffff00',
-        '#00ff00',
-        '#00ffff',
-        '#0000ff',
-        '#ff00ff',
-    ];
-
+    
 
     postLoad(){
         this.loadFontButtons();
         this.selectFont(this.availableFonts[0]);
         this.loadColorButtons();
-        this.selectColor(0);
+        this.selectColor(SettingsManager.colorPalette.selectedColorIndex);
         this.applyFontSizeFromRangeSlider();
     }
 
@@ -99,8 +87,8 @@ class TextTool extends Tool{
 
     loadColorButtons(){
         var buttonsHtml = '';
-        for(var i = 0; i < this.availableColors.length; i++){
-            var color = this.availableColors[i];
+        for(var i = 0; i < SettingsManager.colorPalette.colors.length; i++){
+            var color = SettingsManager.colorPalette.colors[i];
             var colorButtonHtml = `
             <input type='submit' class='colorChoiceButton' id='colorChoiceButton_${i}' 
                 value='' onclick='MapEditor.currentTool.selectColor(${i})'
@@ -113,7 +101,8 @@ class TextTool extends Tool{
 
 
     selectColor(index){
-        this.selectedTextHue = this.availableColors[index];
+        this.selectedTextHue = SettingsManager.colorPalette.colors[index];
+        SettingsManager.colorPalette.selectedColorIndex = index;
         $('.selectedColorChoiceButton').removeClass('selectedColorChoiceButton');
         $(`#colorChoiceButton_${index}`).addClass('selectedColorChoiceButton');
     }

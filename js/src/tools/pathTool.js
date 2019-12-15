@@ -38,19 +38,6 @@ class PathTool extends Tool {
     </div>
     `;
 
-
-    availableColors = [
-        '#000000',
-        '#ffffff',
-        '#ff0000',
-        '#ffff00',
-        '#00ff00',
-        '#00ffff',
-        '#0000ff',
-        '#ff00ff',
-    ];
-
-
     selectedColor = '#000000';
     selectedWidth = 4;
     selectedDash = [];
@@ -59,14 +46,14 @@ class PathTool extends Tool {
 
     postLoad(){
         this.loadColorButtons();
-        this.selectColor(0);
+        this.selectColor(SettingsManager.colorPalette.selectedColorIndex);
         this.applyLineWidthFromRangeSlider();
     }
 
     loadColorButtons(){
         var buttonsHtml = '';
-        for(var i = 0; i < this.availableColors.length; i++){
-            var color = this.availableColors[i];
+        for(var i = 0; i < SettingsManager.colorPalette.colors.length; i++){
+            var color = SettingsManager.colorPalette.colors[i];
             var colorButtonHtml = `
             <input type='submit' class='colorChoiceButton' id='colorChoiceButton_${i}' 
                 value='' onclick='MapEditor.currentTool.selectColor(${i})'
@@ -79,7 +66,8 @@ class PathTool extends Tool {
 
 
     selectColor(index){
-        this.selectedColor = this.availableColors[index];
+        this.selectedColor = SettingsManager.colorPalette.colors[index];
+        SettingsManager.colorPalette.selectedColorIndex = index;
         $('.selectedColorChoiceButton').removeClass('selectedColorChoiceButton');
         $(`#colorChoiceButton_${index}`).addClass('selectedColorChoiceButton');
     }

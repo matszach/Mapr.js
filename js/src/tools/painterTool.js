@@ -27,23 +27,6 @@ class PainterTool extends Tool {
     <div class='toolPanelComponentDiv' id='brushTypeDiv'></div>
     `;
 
-    palette =
-    [
-        ['#3f0000', '#6f0000', '#9f0000', '#cf0000', '#ff0000'], // red
-        ['#3f1f00', '#6f3700', '#9f4700', '#cf6700', '#ff7F00'], // 
-        ['#3f3f00', '#6f6f00', '#9f9f00', '#cfcf00', '#ffff00'], // yellow
-        ['#1f3f00', '#376f00', '#479f00', '#67cf00', '#7Fff00'], // 
-        ['#003f00', '#006f00', '#009f00', '#00cf00', '#00ff00'], // green
-        ['#003f1f', '#006f37', '#009f47', '#00cf67', '#00ff7F'], // 
-        ['#003f3f', '#006f6f', '#009f9f', '#00cfcf', '#00ffff'], // teal
-        ['#001f3f', '#00376f', '#00479f', '#0067cf', '#007Fff'], // 
-        ['#00003f', '#00006f', '#00009f', '#0000cf', '#0000ff'], // blue
-        ['#1f003f', '#37006f', '#47009f', '#6700cf', '#7F00ff'], // 
-        ['#3f003f', '#6f006f', '#9f009f', '#cf00cf', '#ff00ff'], // pink
-        ['#3f001f', '#6f0037', '#9f0047', '#cf0067', '#ff007F'], // 
-        ['#000000', '#3f3f3f', '#7f7f7f', '#c8c8c8', '#ffffff']  // black/grey/white
-    ];
-
     brushTypes = 
     [
         [[0, ''], [1, ''], [2, '']],
@@ -57,28 +40,30 @@ class PainterTool extends Tool {
     postLoad(){
         this.loadColorButtons();
         this.loadBrushTypeButtons();
-        this.selectColorFromButton(8, 2);
+        this.selectColor(SettingsManager.colorPalette.selectedColorIndex);
         this.applyBrushSizeFromRangeSlider();
         this.selectBrushTypeFromButton(0, 0);
     }
 
     loadColorButtons(){
         var buttonsHtml = '';
-        for(var i = 0; i < this.palette.length; i++){
-            var colorButtonsRow = `<div class='colorButtonRow'>`;
-            for(var j = 0; j < this.palette[i].length; j++){
-                var buttonId = `colorButton_i${i}_j${j}`;
-                colorButtonsRow += `
-                <input type='submit' 
-                    class='colorButton' id='${buttonId}' value=''  
-                    onclick='MapEditor.currentTool.selectColorFromButton(${i}, ${j})' 
-                    style='background-color: ${this.palette[i][j]}'/>
-                `
-            }
-            colorButtonsRow += '</div>';
-            buttonsHtml += colorButtonsRow;
+        for(var i = 0; i < SettingsManager.colorPalette.colors.length; i++){
+            var color = SettingsManager.colorPalette.colors[i];
+            var colorButtonHtml = `
+            <input type='submit' class='colorChoiceButton' id='colorChoiceButton_${i}' 
+                value='' onclick='MapEditor.currentTool.selectColor(${i})'
+                style='background-color: ${color}'/>
+            `;
+            buttonsHtml += colorButtonHtml;
         }
         $('#colorButtonsDiv').html(buttonsHtml);
+    }
+
+    selectColor(index){
+        this.choosenColor = SettingsManager.colorPalette.colors[index];
+        SettingsManager.colorPalette.selectedColorIndex = index;
+        $('.selectedColorChoiceButton').removeClass('selectedColorChoiceButton');
+        $(`#colorChoiceButton_${index}`).addClass('selectedColorChoiceButton');
     }
 
     loadBrushTypeButtons(){
@@ -97,12 +82,6 @@ class PainterTool extends Tool {
             buttonsHtml += brushTypeButtonsRow;
         }
         $('#brushTypeDiv').html(buttonsHtml);
-    }
-
-    selectColorFromButton(i, j){
-        $('.selectedColorButton').removeClass('selectedColorButton');
-        $(`#colorButton_i${i}_j${j}`).addClass('selectedColorButton');
-        this.choosenColor = this.palette[i][j];
     }
 
     applyBrushSizeFromRangeSlider(){
