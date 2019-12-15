@@ -189,12 +189,11 @@ class PainterTool extends Tool {
             return;
         }
 
+        canvas.strokeStyle = this.choosenColor;
         if(mouse.isLeftDown){
-            canvas.lineWidth = 2;
-            canvas.strokeStyle = '#ffffff';
+            canvas.lineWidth = 3;
         } else {
-            canvas.lineWidth = 0.5;
-            canvas.strokeStyle = '#aaaaaa';
+            canvas.lineWidth = 1.5;
         }
 
         var x = mouse.mouseX;

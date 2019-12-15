@@ -27,22 +27,10 @@ const SettingsManager = {
 
     colorPalette : {
         colors : [
-            '#ff0000',
-            '#ff8800',
-            '#ffff00',
-            '#88ff00',
-            '#00ff00',
-            '#00ff88',
-            '#00ffff',
-            '#0088ff',
-            '#0000ff',
-            '#8800ff',
-            '#ff00ff',
-            '#ff0088',
-            '#000000',
-            '#ffffff',
-            '#ffffff',
-            '#ffffff',
+            '#ff0000', '#ff0055', '#ff00aa', '#ff00ff', '#aa00ff', '#5500ff',
+            '#0000ff', '#0055ff', '#00aaff', '#00ffff', '#00ffaa', '#00ff55',
+            '#00ff00', '#55ff00', '#aaff00', '#ffff00', '#ffaa00', '#ff5500', 
+            '#000000', '#555555', '#aaaaaa', '#ffffff', '#ffffff', '#ffffff',     
         ],  
 
         selectedColorIndex : 0,

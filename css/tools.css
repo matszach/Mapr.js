@@ -1,5 +1,7 @@
 .toolPanelComponentDiv{
-    margin: 20px;
+    margin: 20px 20px -10px 20px; 
+    /* 20px up and -10px down ensures 20px 
+    between the top most panel and the top of the parent panel */
     border-radius: 10px;
     box-shadow: 2px 2px 5px 5px var(--shadow-color);
     transition-duration: 200ms;
@@ -95,15 +97,15 @@
     border-radius: 10px 0px 0px 0px;
 }
 
-#brushTypeButton_i0_j2, #colorChoiceButton_3{
+#brushTypeButton_i0_j2, #colorChoiceButton_5{
     border-radius: 0px 10px 0px 0px;
 }
 
-#brushTypeButton_i1_j0, #colorChoiceButton_12{
+#brushTypeButton_i1_j0, #colorChoiceButton_18{
     border-radius: 0px 0px 0px 10px;
 }
 
-#brushTypeButton_i1_j2, #colorChoiceButton_15{
+#brushTypeButton_i1_j2, #colorChoiceButton_23{
     border-radius: 0px 0px 10px 0px;
 }
 
@@ -156,18 +158,18 @@
 
 /* color buttons */
 .colorChoiceButton{
-    width: 40px;
-    height: 40px;
+    width: calc(160px /6);
+    height: calc(160px /6);
 }
 
 .colorChoiceButton:hover{
-    border: 3px solid rgba(120, 120, 255, 0.6)
+    border: 2px solid rgba(40, 40, 80, 0.6)
 }
 
 .colorChoiceButton.selectedColorChoiceButton{
-    border: 6px solid rgba(120, 120, 255, 0.4)
+    border: 4px solid rgba(40, 40, 80, 0.4);
 }
 
 .colorChoiceButton:active{
-    border-width: 8px;
+    border-width: 6px;
 }
