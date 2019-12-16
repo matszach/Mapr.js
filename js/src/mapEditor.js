@@ -412,6 +412,10 @@ const MapEditor = {
         this.loadTool(new TextTool());
     },
 
+    loadEraserTool(){
+        this.loadTool(new EraserTool());
+    },
+
     handleTooluse(){
         var mouse = MapEditor.mouse;
         var x = mouse.mouseFieldX;

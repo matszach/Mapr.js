@@ -17,7 +17,7 @@ const ColorsModal = {
             var color = SettingsManager.colorPalette.colors[i];
             var html = `
             <label class='paletteInputOverlay' id='paletteInputOverlay_${i}' style='background-color: ${color}'>
-                <p id='paletteText_${i}'>${color}</p>
+                <p class='paletteText' id='paletteText_${i}'>${color}</p>
                 <input type='color' class='paletteConfigHiddenInput' id='paletteInput_${i}' 
                     value='${color}' onchange='ColorsModal.updateColor(${i})'/>
             </label>`;

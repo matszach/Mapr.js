@@ -183,10 +183,13 @@
     height: 30px;
     line-height: 30px;
     font-size: 0.7em;
-    color: #222233;
     cursor: pointer;
 }
 
-.paletteInputOverlay:hover{
-    color: #7777aa;
+.paletteText{
+    color: #333355;
+    opacity: 0.4;
+}
+.paletteText:hover{
+    opacity: 1;
 }

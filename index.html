@@ -18,6 +18,7 @@
   <script src="js/src/tools/locationTool.js"></script>
   <script src="js/src/tools/textTool.js"></script>
   <script src="js/src/tools/pathTool.js"></script>
+  <script src="js/src/tools/eraserTool.js"></script>
   <script src="js/src/mapUtils.js"></script>
   <script src="js/src/mapEditor.js"></script>
   <script src="js/src/modal/pseudoModal.js"></script>
@@ -65,6 +66,9 @@
             <input type='submit' id='locationChoiceTool' class='toolsChoiceButton' value='' 
                 onclick="MapEditor.loadLocationTool()"
                 style='background-image: url(assets/img/gui_symbols/position-marker.png)'/>
+            <input type='submit' id='eraserChoiceTool' class='toolsChoiceButton' value='' 
+                onclick="MapEditor.loadEraserTool()"
+                style='background-image: url(assets/img/gui_symbols/trash-can.png)'/>
         </div>
         <div id='toolsPanelDiv'></div>
         <div id='mapDiv'>
