@@ -174,3 +174,45 @@
 .colorChoiceButton:active{
     border-width: 6px;
 }
+
+
+.eraseChoiceButton{
+    width: calc(160px / 3);
+    height: calc(160px / 3);
+
+    /* the symbol button is a DIV element and these are here to make itr more button-like */
+    background-color: #88ff88;
+    display: -moz-box;
+    float: left;
+    cursor: pointer;
+
+    /* allows for the image applied with jQuery to be stretched over the entire button */
+    /* the size is slighly  larger than the original button to prevent empty pixel lines appearing on some hover actions */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px 32px; 
+
+    transition-duration: 300ms;
+}
+
+.eraseChoiceButton:hover{
+    filter: brightness(1.2);
+}
+
+.eraseChoiceButton:active{
+    filter: brightness(0.9);
+}
+
+#erasePathsToggleButton{
+    background-image: url('../assets/img/gui_symbols/stone-path.png');
+    border-radius: 10px 0px 0px 10px
+}
+
+#eraseTextToggleButton{
+    background-image: url('../assets/img/gui_symbols/quill.png')
+}
+
+#eraseLocationsToggleButton{
+    background-image: url('../assets/img/gui_symbols/position-marker.png');
+    border-radius: 0px 10px 10px 0px;
+}

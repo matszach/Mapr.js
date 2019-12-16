@@ -2,16 +2,63 @@
 class EraserTool extends Tool{
 
     toolPanelHtml = `
-        <h1>Eraser Tool</h1>
+    <div class='toolPanelComponentDiv'>
+        <input type='range' class='toolSlider' id='eraserSizeSlider' min=1 max=100 value=5 step=1
+            onchange='MapEditor.currentTool.applyEraserSizeFromRangeSlider()'/>
+        <span class='toolSliderValue' id='eraserSizeValue'></span>     
+    </div>
+    <div class='toolPanelComponentDiv'>
+        <input type='submit' class='eraseChoiceButton' id='erasePathsToggleButton'
+            value='' onclick="MapEditor.currentTool.toggleErasePaths()" '/>  
+        <input type='submit' class='eraseChoiceButton' id='eraseTextToggleButton'
+            value='' onclick="MapEditor.currentTool.toggleEraseText()" '/>
+        <input type='submit' class='eraseChoiceButton'  id='eraseLocationsToggleButton'
+            value='' onclick="MapEditor.currentTool.toggleEraseLocations()" />  
+    </div>
     `;
 
-    selectedEraseRange = 5;
-    isLocationErasing = true;
-    isTextErasing = true;
+    selectedEraseRange = 1;
     isPathErasing = true;
+    isTextErasing = true;
+    isLocationsErasing = true;
 
     postLoad(){
-     
+        this.applyEraserSizeFromRangeSlider();
+    }
+
+    toggleErasePaths(){
+        if(this.isPathErasing){
+            this.isPathErasing = false;
+            $('#erasePathsToggleButton').css('background-color', '#ff8888');
+        } else {
+            this.isPathErasing = true;
+            $('#erasePathsToggleButton').css('background-color', '#88ff88');
+        }
+    }
+
+    toggleEraseText(){
+        if(this.isTextErasing){
+            this.isTextErasing = false;
+            $('#eraseTextToggleButton').css('background-color', '#ff8888');
+        } else {
+            this.isTextErasing = true;
+            $('#eraseTextToggleButton').css('background-color', '#88ff88');
+        }
+    }
+
+    toggleEraseLocations(){
+        if(this.isLocationsErasing){
+            this.isLocationsErasing = false;
+            $('#eraseLocationsToggleButton').css('background-color', '#ff8888');
+        } else {
+            this.isLocationsErasing = true;
+            $('#eraseLocationsToggleButton').css('background-color', '#88ff88');
+        }
+    }
+
+    applyEraserSizeFromRangeSlider(){
+        this.selectedEraseRange = $('#eraserSizeSlider').val();
+        $('#eraserSizeValue').html(this.selectedEraseRange);
     }
 
     drawMouseHighlight(canvas, dv){
@@ -46,7 +93,7 @@ class EraserTool extends Tool{
 
     usageHeld(x, y){
         var map = MapEditor.map;
-        if(this.isLocationErasing) this.removeLocations(x, y, map);
+        if(this.isLocationsErasing) this.removeLocations(x, y, map);
         if(this.isTextErasing) this.removeTextNodes(x, y, map);
         if(this.isPathErasing) this.removePaths(x, y, map);
     }
